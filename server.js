@@ -49,6 +49,15 @@ io.on('connection', function (socket) {
     delete players[socket.id];
     // emit a message to all players to remove this player
     io.emit('disconnect', socket.id);
+
+    //reset score when there are not players
+    if(Object.keys(players).length == 0)
+    {
+        console.log('No players in game, scores are reset.')
+        scores.blue = 0;
+        scores.red = 0;
+    }
+
   });
 
     // when a player moves, update the player data
